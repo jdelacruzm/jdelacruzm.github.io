@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var nombre;
+        nombre="Juan Carlos";
+        console.log("El valor de la variable nombre es"
+        +nombre);
+        nombre=8;
+        var numero1=7;// declaraciones globales
+        let numero2=5;//variable local
+        var suma=numero2+numero1;
+        console.log(suma);
+
+        var preferencia="pizza";
+        if (true){
+            let preferencia="tacos";
+            console.log("preferencia local "+preferencia);
+        }
+        console.log("preferencia global " + preferencia);
+
+        const Pi=3.141564;
+
+        document.write("Este es un ejercicio de declaración de variables");
+
+    </script>
+</body>
+</html>
