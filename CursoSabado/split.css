@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+h1{
+    font-size: 3rem;
+    position: absolute;
+    left: 50%;
+    top:20%;
+    color:#fff;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.btn{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    top:40%;
+    text-decoration: none;
+    border: #fff solid 0.2rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.5rem;
+    color:#fff;
+    transform: translateX(-50%);
+}
+
+.contenedor{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+}
+
+.lado{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.lado.izquierdo{
+    left: 0;
+    background-image: url('imagenes/fondo.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+.lado.izquierdo::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 1, 253,0.5);
+}
+
+.lado.lado.derecho::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 86, 0.5);
+}
+
+
+.lado.derecho{
+    right: 0;
+    background-image: url('imagenes/pokemon.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+}
+
+.izquierdo-seleccionado .izquierdo{
+    width: 70%;
+}
+
+.izquierdo-seleccionado .derecho{
+    width: 30%;
+}
+
+
+.derecho-seleccionado .derecho{
+    width: 70%;
+}
+
+.derecho-seleccionado .izquierdo{
+    width: 30%;
+}
+
+.lado.derecho,
+.lado.izquierdo,
+.lado.izquierdo::before,
+.lado.lado.derecho::before{
+    transition: all 1s ease-in-out;
+}
