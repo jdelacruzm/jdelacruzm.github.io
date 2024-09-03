@@ -4,17 +4,13 @@
     <title>100 nutriólogos dijeron</title>
 </head>
 <body>
+    <div class="row" style="max-height: 250px;">
+        <div class="col-4"> <img src='https://www.uat.edu.mx/PublishingImages/Logos/UAT-Escudo.svg' style='height:100px; display:block; margin: 10px auto;' /></div>
+        <div class="col-4">   <img src='logo100nd-transparente.png' style='height:40%; display:block; margin: 10px auto;' /></div>
+        <div class="col-4"> <img src='https://uatscdh.uat.edu.mx/SiteAssets/uatscdh.png' style='height:100px; display:block; margin: 10px auto;' /></div>
+    </div>
     <table style="width:100%;">
-        <tr>
-            <td>
-                <div class="row">
-                    <div class="col-4"> <img src='logo_uat.png' style='height:100px; display:block; margin: 10px auto;' /></div>
-                    <div class="col-4">   <img src='logo100nd-transparente.png' style='height:80%; display:block; margin: 10px auto;' /></div>
-                    <div class="col-4"> <img src='logo_uatscdh.png' style='height:100px; display:block; margin: 10px auto;' /></div>
-                </div>
-            </td>
-
-        </tr>
+        
         <tr>
             <td style='position:relative;'>
                 <!--<img src='https://sipcomite.uat.edu.mx/100nd/Fondo_02.jpg' style='position: absolute; top:0; left:0; width: 100%; visibility: hidden;' />-->
@@ -91,9 +87,12 @@
 
         body {
             background-color: #f0f0f0;
-            background-size: contains;
+            
+            background: rgba(230, 230, 230, 1) url(textura-negra-background.png) repeat bottom;
+            overflow: hidden;
+           /* background-size: contain;
             background-position: center;
-            background-repeat: no-repeat;
+            background-repeat: no-repeat;*/
         }
 /*
             body.playing.playing-true {
