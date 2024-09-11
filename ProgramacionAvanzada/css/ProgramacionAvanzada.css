@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root{
+    --primary-color:rgba(186, 75, 38, 1);
+    --secundary-color:#003d5c;
+}
+
 body{
     width: 100vw;
     height: 100vh;
@@ -13,14 +18,114 @@ body{
     justify-content: center;
     margin: 0;
     left: 0;
-    background: url('../imagenes/Programacion.jpg');
-    background-size: cover;
+    background-color:  var(--primary-color);
+    /*background: url('../imagenes/Programacion.jpg');
+    background-size: cover;*/
     color:#ffffff;
 }
- /* Contenedor del texto con un fondo semitransparente */
+
+
+/* Estilo para el botón del menú */
+.menu-btn {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px 20px;
+    display: inline-block;
+   /* background-color: #51279B;*/
+    color: white;
+    border: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+}
+
+/* Ocultar el checkbox, pero es clave para activar el menú */
+.menu-toggle {
+    display: none;
+}
+
+/* Estilos del menú off-canvas */
+.offcanvas-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #333;
+    color: white;
+    transform: translateX(-100%); /* Fuera de la pantalla */
+    transition: transform 0.3s ease;
+}
+
+.offcanvas-menu ul {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+}
+
+.offcanvas-menu ul li {
+    margin: 20px 0;
+}
+
+.offcanvas-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Cuando el checkbox está marcado, mover el menú hacia la pantalla */
+.menu-toggle:checked ~ .offcanvas-menu {
+    transform: translateX(0);
+}
+
+/* Contenido principal */
+.content {
+    padding: 20px;
+}
+
+.content h1 {
+    font-size: 36px;
+    color: #51279B;
+}
+
+.content p {
+    font-size: 18px;
+}
+
+/*
+header {
+   
+    padding: 10px 0;
+    text-align: center;
+    font-size: 2rem;
+}
+
+nav ul {
+    list-style: none; 
+    margin: 0;
+    padding: 0;
+    background-color: var(--secundary-color);
+    border-radius: 8px;
+  
+}
+
+nav ul li {
+    display: inline; 
+    margin: 0 25px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: var(--font-size-small);
+}
+
+
+ 
  .text-overlay {
     
-    color: white; /* Texto en blanco */
+    color: white; 
     padding: 20px;
     margin: 50px auto;
     width: 80%;
@@ -34,7 +139,7 @@ body{
     justify-content:flex-start;
 }
 
- /* Estilos específicos del texto */
+
  h1 {
     font-size: 3em;
     font-weight: bold;
@@ -45,7 +150,7 @@ body::before {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(186, 75, 38, 0.7);
+    
     z-index: -1;
 }
 
@@ -55,4 +160,4 @@ a{
     text-decoration: none;
     color: white;
     font-size: 1.6rem;
-}
+}*/
