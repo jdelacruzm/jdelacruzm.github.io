@@ -1,0 +1,21 @@
+body {
+  font-family: "Arial", sans-serif;
+  padding-top: 56px;
+}
+
+.navbar {
+  background-color: #6c757d;
+}
+
+.jumbotron {
+  background-color: #007bff;
+  color: white;
+  padding: 2rem;
+}
+
+.card {
+  margin-bottom: 2rem;
+}
+.card img {
+  border-radius: 0.25rem;
+}/*# sourceMappingURL=style.css.map */
