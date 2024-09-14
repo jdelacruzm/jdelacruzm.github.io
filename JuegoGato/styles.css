@@ -1,0 +1,37 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#tablero{
+    display: flex;
+    flex-wrap: wrap;
+    width: 310px;
+    height: 300px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.celda{
+    width: 100px;
+    height: 100px;
+    background-color: grey;
+    border:1px solid black;
+    color:white;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#ganador{
+    color:blue;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+    font-weight: bold;
+}
