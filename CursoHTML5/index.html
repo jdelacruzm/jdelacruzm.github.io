@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda en Google</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .search-container {
+            margin-top: 150px;
+        }
+
+        .search-bar {
+            width: 400px;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid #dfe1e5;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background-color: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-container">
+        <form action="https://www.google.com/search" method="GET">
+            <input type="text" name="q" class="search-bar" placeholder="Buscar en Google">
+            <div class="buttons">
+                <button type="submit" class="btn">Buscar con Google</button>
+                <button type="button" class="btn" onclick="window.location.href='https://www.google.com/search?btnI=I&q=' + document.querySelector('.search-bar').value;">Me siento afortunado</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <a href="search-images.html">Buscar imágenes</a> | <a href="advanced-search.html">Búsqueda avanzada</a>
+    </footer>
+
+</body>
+</html>

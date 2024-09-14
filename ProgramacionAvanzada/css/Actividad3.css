@@ -23,6 +23,10 @@ header{
     padding-bottom: 10px;
 }
 
+h1{
+    margin: 0;
+}
+
 #menu{
     list-style: none;
     margin: 0;
@@ -45,12 +49,11 @@ a{
     background-size: cover;
     background-position: center;
     height: var(--alturaSuperior);
+   
 }
 
 .sobrepuesto{
     color: white;
-    position: absolute;
-    width: 100%;
     height: var(--alturaSuperior);
     background-color: rgba(0,0,0,0.5);
     text-align: center;
@@ -68,19 +71,49 @@ a{
     
     background-color: var(--color-primario);
     padding: 20px;
+    text-align: center; 
 }
 
-.carrera{
-    display: inline-block;
-    width: 33vw;
-    height: 50vh;
+
+
+
+/* Cada carrera se alinea en línea con inline-block */
+.carrera {
+    display: inline-block; /* Alinea los divs en fila */
+    width: 32vw;/* Cada div ocupará el 30% del ancho */
+    height: 50vh;/* Altura de cada div */
+    background-image: url(../imagenes/Programacion.jpg);
+    background-position: top;
+    position: relative; /* Para permitir posicionar el contenido dentro del div */
+    background-color: lightgray; /* Color de fondo, puedes cambiarlo o usar imagen */
 }
 
-.carrera img{
-    width: 100%;
+/* Estilo para el sobrepuesto con fondo transparente */
+.sobrepuestoCarrera {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centro el contenido horizontal y verticalmente */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+    color: white;
+    padding: 20px;
+    width: 90%; /* Ocupa casi todo el ancho del div padre */
+    text-align: center;
 }
 
-.carrera h3{
-    position: static;
-    top:90%;
+/* Estilos para los textos dentro del sobrepuesto */
+.sobrepuestoCarrera h3,
+.sobrepuestoCarrera p,
+.sobrepuestoCarrera a {
+    margin: 5px 0;
+    color: white;
+    text-decoration: none;
+}
+
+.sobrepuestoCarrera a {
+    background-color: #fff;
+    color: black;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
 }

@@ -1,0 +1,30 @@
+// Variables de colores y tipografía
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$font-stack: 'Arial', sans-serif;
+
+// Estilos globales
+body {
+    font-family: $font-stack;
+    padding-top: 56px;
+}
+
+// Barra de navegación
+.navbar {
+    background-color: $secondary-color;
+}
+
+.jumbotron {
+    background-color: $primary-color;
+    color: white;
+    padding: 2rem;
+}
+
+// Herencia y anidación
+.card {
+    @extend .shadow !optional;
+    margin-bottom: 2rem;
+    img {
+        border-radius: 0.25rem;
+    }
+}

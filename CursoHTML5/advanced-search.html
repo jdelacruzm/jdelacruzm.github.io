@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda avanzada en Google</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #dfe1e5;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #dfe1e5;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            background-color: #4285F4;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #357ae8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-right">
+        <a href="index.html">Volver a búsqueda principal</a>
+    </div>
+
+    <div class="form-container">
+        <form action="https://www.google.com/search" method="GET">
+            <label>Encontrar páginas con... todas estas palabras:</label>
+            <input type="text" name="as_q">
+
+            <label>Buscar páginas con... esta palabra o frase exacta:</label>
+            <input type="text" name="as_epq">
+
+            <label>Encuentra páginas con... cualquiera de estas palabras:</label>
+            <input type="text" name="as_oq">
+
+            <label>Encontrar páginas con... ninguna de estas palabras:</label>
+            <input type="text" name="as_eq">
+
+            <button type="submit" class="btn">Búsqueda avanzada</button>
+        </form>
+    </div>
+
+</body>
+</html>
