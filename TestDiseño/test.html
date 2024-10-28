@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño UAT con Menú Colapsable</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-color: #edf1f5;
+        }
+
+        /* Estilos para el header */
+        .navbar {
+            background-color: #d27147;
+        }
+
+        /* Estilos para el sidebar */
+        .sidebar {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .sidebar .logo {
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .sidebar .nav-link {
+            padding-left: 1.5rem;
+        }
+
+        /* Estilos para el contenido principal */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 56px); /* Ajustar por el tamaño del header */
+        }
+
+        .main-content img {
+            max-width: 200px;
+        }
+
+        /* Estilos para el footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ffffff;
+        }
+
+        @media (max-width: 991.98px) {
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar con botón de colapso -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ms-3" href="#">
+                <img src="https://uat.edu.mx/logo.png" alt="Logo" width="40" height="40">
+            </a>
+            <div class="ms-auto d-flex align-items-center">
+                <button class="btn btn-light me-2">Home</button>
+                <button class="btn btn-light me-2">?</button>
+                <img src="https://via.placeholder.com/40" alt="User" class="rounded-circle">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar con colapso -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Colapsar menú en pantallas pequeñas -->
+            <div class="col-md-3 col-lg-2 p-0">
+                <div id="sidebarMenu" class="sidebar collapse show">
+                    <div class="logo text-center">
+                        <img src="https://uat.edu.mx/escudo.png" alt="Escudo UAT" width="100">
+                    </div>
+                    <input class="form-control mb-4" type="text" placeholder="Buscar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Tutoria</a>
+                            <ul class="nav flex-column ms-3">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Seguimiento de asesorías</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Unidad de enseñanza aprendizaje</a>
+                            <ul class="nav flex-column ms-3">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Captura de UEA</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Control de UEA</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contenido principal -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <div>
+                    <img src="https://uat.edu.mx/escudo-grande.png" alt="Escudo grande UAT">
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-auto">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col text-center">
+                    <p>Universidad Autónoma de Tamaulipas</p>
+                    <p>Verdad, Belleza, Probidad</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

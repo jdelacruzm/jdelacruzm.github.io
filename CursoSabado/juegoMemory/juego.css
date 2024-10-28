@@ -61,15 +61,15 @@ button:hover {
     position: absolute;
     top: 0;
     left: 0;
-    backface-visibility: hidden; /* Ocultar la parte trasera de la imagen */
-    display: none; /* Inicialmente oculto */
+    backface-visibility: hidden; 
+    display: none;
 }
 
 /* Mostrar la imagen cuando la carta se voltea */
 .card.flipped img {
     display: block; /* Mostrar la imagen al voltear */
     backface-visibility:visible; /* Mostrar la imagen al voltear */
-
+}
 /* Cubierta de la carta (la parte trasera) */
 .card-cover {
     width: 100%;
@@ -83,6 +83,6 @@ button:hover {
     border-radius: 10px;
     transition: opacity 0.4s ease;
 }
-}
+
 
 
