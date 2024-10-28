@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo tablas</title>
+    <style>
+
+        body{
+            display: flex;
+            justify-content: center;
+        }
+
+        table{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td{ 
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        thead{
+            color: white;
+            background-color: gray;
+            text-align: center;
+        }
+        tbody{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td colspan="3">Datos generales</td>
+            </tr>
+            <tr>
+                <td>Nombre</td>
+                <td>Paterno</td>
+                <td>Materno</td>
+            </tr>
+        </thead>
+        <tbody >
+            <tr style="padding: 20px;">
+                <td>Juan</td>
+                <td>Perez</td>
+                <td>Rodriguez</td>
+            </tr>
+            <tr>
+                <td>Maria</td>
+                <td>Rodriguez</td>
+                <td>Rodriguez</td>
+            </tr>
+            <tr>
+                <td>Carlos</td>
+                <td>Hernandez</td>
+                <td>Solís</td>
+            </tr>
+        </tbody>
+        
+    </table>
+</body>
+</html>
