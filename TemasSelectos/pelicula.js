@@ -1,6 +1,6 @@
 const apiKey='3fd2be6f0c70a2a598f084ddfb75487c';
 const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
-const API_URL='https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=2';
+const API_URL='https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1';
 
 // ejemplo de consulta de las peliculas más populares
 //https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1
@@ -15,6 +15,7 @@ async function getMovies (url) {
     const data = await res.json();
     showMovies(data.results);
 }
+
 
 
 function showMovies (movies) {
