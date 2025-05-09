@@ -1,458 +1,576 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Operaciones CRUD con Web API 2.0 en .NET</title>
+    <!-- PrismJS: Incluye CSS y JS desde CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-csharp.min.js"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            color: #55565b;
-        }
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            background-color: #003d5c;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-        h1 {
-            color: #003d5c;
-            margin-top: 40px;
-        }
-        h2 {
-            color: #66899c;
-            margin-top: 30px;
-            border-bottom: 2px solid #e49f7e;
-            padding-bottom: 10px;
-        }
-        h3 {
-            color: #66899c;
-        }
-        .highlight {
-            color: #d05f27;
-            font-weight: bold;
-        }
-        .note {
-            background-color: #f8f8f8;
-            border-left: 4px solid #e49f7e;
-            padding: 10px 20px;
-            margin: 20px 0;
-        }
-        code {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #f8f8f8;
-            padding: 2px 4px;
-            border-radius: 3px;
-            font-size: 0.9em;
-        }
-        pre {
-            background-color: #f8f8f8;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-            border: 1px solid #ddd;
-        }
-        a {
-            color: #4070B6;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .logo-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .logo {
-            max-width: 200px;
-        }
-        .objetivo {
-            background-color: #f8f8f8;
-            padding: 20px;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        .steps {
-            counter-reset: step;
-            padding-left: 0;
-        }
-        .steps li {
-            list-style-type: none;
-            position: relative;
-            padding-left: 40px;
-            margin-bottom: 20px;
-        }
-        .steps li:before {
-            content: counter(step);
-            counter-increment: step;
-            background-color: #d05f27;
-            color: white;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            text-align: center;
-            line-height: 25px;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-        .code-block {
-            background-color: #f8f8f8;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-            border: 1px solid #ddd;
-            margin: 20px 0;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9em;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #66899c;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f8f8f8;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        color: #55565b;
+      }
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      header {
+        background-color: #003d5c;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+      h1 {
+        color: #003d5c;
+        margin-top: 40px;
+      }
+      h2 {
+        color: #66899c;
+        margin-top: 30px;
+        border-bottom: 2px solid #e49f7e;
+        padding-bottom: 10px;
+      }
+      h3 {
+        color: #66899c;
+      }
+      .highlight {
+        color: #d05f27;
+        font-weight: bold;
+      }
+      .note {
+        background-color: #f8f8f8;
+        border-left: 4px solid #e49f7e;
+        padding: 10px 20px;
+        margin: 20px 0;
+      }
+      code {
+        font-family: "Courier New", Courier, monospace;
+        background-color: #f8f8f8;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-size: 0.9em;
+      }
+      pre {
+        background-color: #f8f8f8;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        border: 1px solid #ddd;
+      }
+      a {
+        color: #4070b6;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .logo-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .logo {
+        max-width: 200px;
+      }
+      .objetivo {
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 20px 0;
+      }
+      .steps {
+        counter-reset: step;
+        padding-left: 0;
+      }
+      .steps li {
+        list-style-type: none;
+        position: relative;
+        padding-left: 40px;
+        margin-bottom: 20px;
+      }
+      .steps li:before {
+        content: counter(step);
+        counter-increment: step;
+        background-color: #d05f27;
+        color: white;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        line-height: 25px;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .code-block {
+        background-color: #f8f8f8;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        border: 1px solid #ddd;
+        margin: 20px 0;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.9em;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+      th {
+        background-color: #66899c;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f8f8f8;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="container">
-            <div class="container d-flex justify-content-center justify-content-md-between position-relative" style="margin-bottom: -18px; margin-top: -18px;">
-                <img class="img_logo" src="https://fcav.uat.edu.mx/assets/img/header/thumbnail_headerp.png" alt="uat-fcav-logos" style="width: 100%;">
-                <img class="img_logom" src="https://fcav.uat.edu.mx/assets/img/header/headerm.png" alt="uat-fcav-logos" style="width: 100%; display: none;">
-            </div>
-            <h1 style="color: white;">Prácticas</h1>
-            <h2 style="color: white; border-bottom: none;">Operaciones CRUD con Web API 2.0 en .NET</h2>
-            <p>Dr. Juan Carlos de la Cruz Maldonado</p>
+      <div class="container">
+        <div
+          class="container d-flex justify-content-center justify-content-md-between position-relative"
+          style="margin-bottom: -18px; margin-top: -18px"
+        >
+          <img
+            class="img_logo"
+            src="https://fcav.uat.edu.mx/assets/img/header/thumbnail_headerp.png"
+            alt="uat-fcav-logos"
+            style="width: 100%"
+          />
+          <img
+            class="img_logom"
+            src="https://fcav.uat.edu.mx/assets/img/header/headerm.png"
+            alt="uat-fcav-logos"
+            style="width: 100%; display: none"
+          />
         </div>
+        <h1 style="color: white">Prácticas</h1>
+        <h2 style="color: white; border-bottom: none">
+          Operaciones CRUD con Web API 2.0 en .NET
+        </h2>
+        <p>Dr. Juan Carlos de la Cruz Maldonado</p>
+      </div>
     </header>
 
     <div class="container">
-        <div class="objetivo">
-            <p>El presente documento tiene el objetivo de proporcionar una guía completa para implementar una serie de operaciones CRUD mediante Web API para el entorno de .NET o .NET CORE.</p>
-        </div>
+      <div class="objetivo">
+        <p>
+          El presente documento tiene el objetivo de proporcionar una guía
+          completa para implementar una serie de operaciones CRUD mediante Web
+          API para el entorno de .NET o .NET CORE.
+        </p>
+      </div>
+
+      <h1 id="objetivos">Objetivos</h1>
+      <ol class="steps">
+        <li>
+          <h3>Fundamentos de la programación Web</h3>
+        </li>
+        <li>
+          <h3>Consumo de datos</h3>
+        </li>
+        <li>
+          <h3>CRUD con Web API</h3>
+        </li>
+      </ol>
+
+      <h1 id="fundamentos">1. Fundamentos de la programación Web</h1>
+
+      <h2>Ecosistema complicado</h2>
+      <p>
+        Un complejo sistema de interrelaciones entre elementos vivos y no vivos
+        del medio ambiente.
+      </p>
+      <p>
+        El desarrollo web también puede entenderse como un ecosistema, que se
+        basa en tecnologías existentes (URL, DNS e Internet) y aporta nuevos
+        protocolos y estándares (HTTP, HTML y JavaScript) que facilitan las
+        interacciones cliente-servidor.
+      </p>
+
+      <h2>Ambientes</h2>
+      <div class="note">
+        <p>
+          <span class="highlight">FRONT-END:</span> Tecnologías que se ejecutan
+          en el navegador.
+        </p>
+        <p>
+          <span class="highlight">BACK-END:</span> Tecnologías que se ejecutan
+          en el servidor.
+        </p>
+      </div>
+
+      <h2>1.1 Arquitectura Cliente-Servidor</h2>
+      <p>
+        <span class="highlight">Cliente:</span> solicita, recibe y despliega
+        elementos en un navegador Web.
+      </p>
+      <p>
+        <span class="highlight">Servidor:</span> Una computadora regularmente
+        encendida las 24 horas, que responde las solicitudes de los clientes.
+      </p>
+
+      <div class="code-block">
+        <p>
+          <span class="highlight"
+            >API (interfaz del programa de aplicación)</span
+          >
+          es un conjunto de reglas que permite que diferentes programas se
+          comuniquen entre sí. Describe la manera apropiada para que un
+          desarrollador de software componga un programa en un servidor que se
+          comunica con varias aplicaciones cliente.
+        </p>
+      </div>
+
+      <p>
+        En términos prácticos una API se puede comunicar con otras aplicaciones
+        u otros programas, con la intención de compartir información de manera
+        segura.
+      </p>
+
+      <h1 id="proyecto">2. Creando un proyecto API Web</h1>
+      <p>Pasos para crear un nuevo proyecto:</p>
+      <ol>
+        <li>Abrir Visual Studio</li>
+        <li>Seleccionar "Crear un nuevo proyecto"</li>
+        <li>Elegir "Aplicación web ASP.NET (.NET Framework)"</li>
+        <li>Configurar el proyecto (nombre, ubicación, solución)</li>
+        <li>Seleccionar .NET Framework 4.7.2 o superior</li>
+        <li>Elegir la plantilla "API web"</li>
+      </ol>
+
+      <h2>2. Describiendo el proyecto</h2>
+      <p>Componentes principales del proyecto:</p>
+      <ol>
+        <li>
+          Connected Services: Configurador rápido de servicios para su consumo,
+          muy orientado a las tecnologías de la nube como Azure
+        </li>
+        <li>Properties: Contiene información general sobre el ensamblado</li>
+        <li>
+          Referencias: Contiene todas las librerías compiladas de .NET de
+          acuerdo al framework instalado
+        </li>
+        <li>
+          App_Data: Se utiliza para almacenar los archivos de bases de datos
+          (mdf)
+        </li>
+        <li>
+          App_Start: Contiene los archivos que se ejecutarán cuando se inicie la
+          aplicación
+        </li>
+        <li>
+          Controllers: Maneja las solicitudes de los clientes y devuelve una
+          respuesta. Todos los archivos deben terminar con la palabra
+          "Controller"
+        </li>
+        <li>
+          Models: Archivos de clase. Representa los datos de una aplicación
+        </li>
+        <li>Global.asax: Son eventos que se disparan a nivel aplicación</li>
+        <li>Packages.config: Paquetes instalados de terceros desde NuGet</li>
+        <li>Web.config: Contiene la configuración de la aplicación Web</li>
+      </ol>
+
+      <h2>2.1 Modelo</h2>
+      <div class="note">
+        <p>
+          <span class="highlight">Clase:</span> Es la definición de
+          características y comportamientos que define un conjunto de objetos
+          comunes.
+        </p>
+        <p><span class="highlight">Modelo:</span> Abstracción del mundo real</p>
+      </div>
+
+      <h3>Implementación de la Clase</h3>
+      <!-- Bloque de código C# con formato -->
+      <pre><code class="language-csharp">
+public class CuentaBancaria
+{
+    double saldo;
+    string titular;
+    string clave;
+    string banco;
+
+    public CuentaBancaria(string titular, double saldo)
+    {
+        this.titular = titular;
+        this.saldo = saldo;
+    }
+
+    public void Depositar(double cantidad)
+    {
+        saldo += cantidad;
+    }
+
+    public bool Retirar(double cantidad)
+    {
+        if (cantidad <= saldo)
+        {
+            saldo -= cantidad;
+            return true;
+        }
+        return false;
+    }
+}
+</code></pre>
+
+      <h3>Acceso a propiedades</h3>
+      <pre><code class="language-csharp">
+        <p>public class Cuenta</p>
+        <p>{</p>
+        <p>string clave; // Acceso limitado</p>
+        <p>string banco; // Acceso limitado</p>
+        <p></p>
+        <p>public double Saldo { get; set; } // Acceso público</p>
+        <p>public string Titular { get; set; } // Acceso público</p>
+        <p>}</p>
+      </code></pre>
+
+      <h3>Modelo utilizando Entity Framework</h3>
+      <p>
+        Entity Framework proporciona una capa de abstracción para trabajar con
+        bases de datos, incluyendo:
+      </p>
+      <ul>
+        <li>Entity Objects</li>
+        <li>Context, Model</li>
+        <li>EDM Model</li>
+        <li>Constructor</li>
+        <li>ADO.NET (Connection, Command, DataReader)</li>
+        <li>SqlClient Data Provider</li>
+        <li>Entity Client Data Provider</li>
+      </ul>
+
+      <h2>2.2 Modelo – Conexión a la BD</h2>
+      <p>Pasos para conectar a la base de datos:</p>
+      <ol>
+        <li>Crear una nueva base de datos en SQL Server</li>
+        <li>Crear un usuario para conectarse a la base de datos</li>
+        <li>Configurar la cadena de conexión en Web.config</li>
+        <li>Agregar el Entity Data Model al proyecto</li>
+        <li>Seleccionar "EF Designer desde base de datos"</li>
+        <li>Configurar la conexión y seleccionar las tablas a incluir</li>
+      </ol>
+
+      <pre><code class="language-csharp">
+        <p>&lt;configuration&gt;</p>
+        <p>&lt;connectionStrings&gt;</p>
+        <p>
+          &lt;add name="myConnectionString"
+          connectionString="server=localhost;database=myDb;uid=myUser;password=myPass;"
+          /&gt;
+        </p>
+        <p>&lt;/connectionStrings&gt;</p>
+      </code></pre>
+
+      <h1 id="controladores">3. Controladores</h1>
+      <p>
+        Los controladores manejan las solicitudes de los clientes y devuelven
+        respuestas. En el patrón MVC (Modelo-Vista-Controlador), el controlador
+        actúa como intermediario entre el modelo y la vista.
+      </p>
+
+      <pre><code class="language-csharp">
+        <p>namespace DemoTaller.Controllers</p>
+        <p>{</p>
+        <p>public class EmpleadoController : ApiController</p>
+        <p>{</p>
+        <p>// Código del controlador</p>
+        <p>}</p>
+        <p>}</p>
+      </code></pre>
+
+      <h3>HTTP</h3>
+      <p>
+        Es un protocolo sin estado que permite realizar operaciones CRUD
+        (Create, Read, Update, Delete) mediante verbos HTTP:
+      </p>
+      <ul>
+        <li>GET: Recuperar datos</li>
+        <li>POST: Crear nuevos recursos</li>
+        <li>PUT: Actualizar recursos existentes</li>
+        <li>DELETE: Eliminar recursos</li>
+      </ul>
+
+      <h1 id="crud">4. CRUD</h1>
+      <p>Operaciones CRUD en Web API 2.0:</p>
+      <ul>
+        <li>
+          <span class="highlight">GET()</span> – Devuelve todos los empleados
+        </li>
+        <li>
+          <span class="highlight">GET(id)</span> – Devuelve un cliente por su
+          número de empleado
+        </li>
+        <li><span class="highlight">POST</span> – Agrega un nuevo empleado</li>
+        <li>
+          <span class="highlight">PUT</span> – Actualiza los datos de un
+          empleado
+        </li>
+        <li>
+          <span class="highlight">DELETE</span> – Elimina un registro de un
+          empleado
+        </li>
+      </ul>
+
+      <h2>4.1 CRUD - Controlador</h2>
+      <p>Constructor del controlador:</p>
+      <pre><code class="language-csharp">
+        <p>namespace DemoTaller.Controllers</p>
+        <p>{</p>
+        <p>public class EmpleadoController : ApiController</p>
+        <p>{</p>
+        <p>public Models.DemoEntities contexto;</p>
+        <p></p>
+        <p>public EmpleadoController()</p>
+        <p>{</p>
+        <p>contexto = new Models.DemoEntities();</p>
+        <p>}</p>
+        <p>}</p>
+        <p>}</p>
       
+      </code></pre>
 
-        <h1 id="objetivos">Objetivos</h1>
-        <ol class="steps">
-            <li>
-                <h3>Fundamentos de la programación Web</h3>
-            </li>
-            <li>
-                <h3>Consumo de datos</h3>
-            </li>
-            <li>
-                <h3>CRUD con Web API</h3>
-            </li>
-        </ol>
+      <h2>4.1 CRUD - READ</h2>
+      <p>Método GET para obtener todos los empleados:</p>
+      <!-- Bloque de código resaltado -->
+      <pre><code class="language-html">
+// Cliente HTML con jQuery
+&lt;script&gt;
+    var uri = "api/empleado";
 
-        <h1 id="fundamentos">1. Fundamentos de la programación Web</h1>
-        
-        <h2>Ecosistema complicado</h2>
-        <p>Un complejo sistema de interrelaciones entre elementos vivos y no vivos del medio ambiente.</p>
-        <p>El desarrollo web también puede entenderse como un ecosistema, que se basa en tecnologías existentes (URL, DNS e Internet) y aporta nuevos protocolos y estándares (HTTP, HTML y JavaScript) que facilitan las interacciones cliente-servidor.</p>
-        
-        <h2>Ambientes</h2>
-        <div class="note">
-            <p><span class="highlight">FRONT-END:</span> Tecnologías que se ejecutan en el navegador.</p>
-            <p><span class="highlight">BACK-END:</span> Tecnologías que se ejecutan en el servidor.</p>
-        </div>
+    $(function () {
+        ObtenerEmpleados();
+    });
 
-        <h2>1.1 Arquitectura Cliente-Servidor</h2>
-        <p><span class="highlight">Cliente:</span> solicita, recibe y despliega elementos en un navegador Web.</p>
-        <p><span class="highlight">Servidor:</span> Una computadora regularmente encendida las 24 horas, que responde las solicitudes de los clientes.</p>
-        
-        <div class="code-block">
-            <p><span class="highlight">API (interfaz del programa de aplicación)</span> es un conjunto de reglas que permite que diferentes programas se comuniquen entre sí. Describe la manera apropiada para que un desarrollador de software componga un programa en un servidor que se comunica con varias aplicaciones cliente.</p>
-        </div>
-        
-        <p>En términos prácticos una API se puede comunicar con otras aplicaciones u otros programas, con la intención de compartir información de manera segura.</p>
+    function ObtenerEmpleados() {
+        $.getJSON(uri).done(function (data) {
+            console.log("éxito");
+            $('#empleados').empty(); // Limpiar el cuerpo de la tabla
 
-        <h1 id="proyecto">2. Creando un proyecto API Web</h1>
-        <p>Pasos para crear un nuevo proyecto:</p>
-        <ol>
-            <li>Abrir Visual Studio</li>
-            <li>Seleccionar "Crear un nuevo proyecto"</li>
-            <li>Elegir "Aplicación web ASP.NET (.NET Framework)"</li>
-            <li>Configurar el proyecto (nombre, ubicación, solución)</li>
-            <li>Seleccionar .NET Framework 4.7.2 o superior</li>
-            <li>Elegir la plantilla "API web"</li>
-        </ol>
+            // Crea un ciclo que recorre todos los clientes de data
+            $.each(data, function (key, val) {
+                // Agrega una nueva fila con los datos
+                var row = '&lt;td&gt;' + val.NumeroEmpleado +
+                    '&lt;/td&gt;&lt;td&gt;' + val.NombreEmpleado + '&lt;/td&gt;' +
+                    '&lt;/td&gt;&lt;td&gt;' + val.Sueldo + '&lt;/td&gt;';
 
-        <h2>2. Describiendo el proyecto</h2>
-        <p>Componentes principales del proyecto:</p>
-        <ol>
-            <li>Connected Services: Configurador rápido de servicios para su consumo, muy orientado a las tecnologías de la nube como Azure</li>
-            <li>Properties: Contiene información general sobre el ensamblado</li>
-            <li>Referencias: Contiene todas las librerías compiladas de .NET de acuerdo al framework instalado</li>
-            <li>App_Data: Se utiliza para almacenar los archivos de bases de datos (mdf)</li>
-            <li>App_Start: Contiene los archivos que se ejecutarán cuando se inicie la aplicación</li>
-            <li>Controllers: Maneja las solicitudes de los clientes y devuelve una respuesta. Todos los archivos deben terminar con la palabra "Controller"</li>
-            <li>Models: Archivos de clase. Representa los datos de una aplicación</li>
-            <li>Global.asax: Son eventos que se disparan a nivel aplicación</li>
-            <li>Packages.config: Paquetes instalados de terceros desde NuGet</li>
-            <li>Web.config: Contiene la configuración de la aplicación Web</li>
-        </ol>
+                // Append al body con el id empleados
+                $('&lt;tr/&gt;', { html: row }).appendTo($('#empleados'));
+            });
+        });
+    }
+&lt;/script&gt;
+</code></pre>
+      <p>Estructura HTML de la tabla:</p>
+      <pre><code class="language-html">
+        <p>&lt;table class="table"&gt;</p>
+        <p>&lt;thead&gt;</p>
+        <p>&lt;tr&gt;</p>
+        <p>&lt;td&gt;Número de empleado&lt;/td&gt;</p>
+        <p>&lt;td&gt;Nombre Completo&lt;/td&gt;</p>
+        <p>&lt;td&gt;Sueldo&lt;/td&gt;</p>
+        <p>&lt;/tr&gt;</p>
+        <p>&lt;/thead&gt;</p>
+        <p>&lt;tbody id="empleados"&gt;&lt;/tbody&gt;</p>
+        <p>&lt;/table&gt;</p>      
+</code></pre>
 
-        <h2>2.1 Modelo</h2>
-        <div class="note">
-            <p><span class="highlight">Clase:</span> Es la definición de características y comportamientos que define un conjunto de objetos comunes.</p>
-            <p><span class="highlight">Modelo:</span> Abstracción del mundo real</p>
-        </div>
+      <h2>4.1 CRUD - CREATE</h2>
+      <p>Método POST para agregar un nuevo empleado:</p>
+      <pre><code class="language-csharp">
+        <p>// Controlador en C#</p>
+        <p>public void Post(Models.Empleado empleado)</p>
+        <p>{</p>
+        <p>contexto.Empleado.Add(empleado);</p>
+        <p>contexto.SaveChanges();</p>
+        <p>}</p>
+        <p></p>
+        <p>// Cliente JavaScript</p>
+        <p>function GuardarEmpleado() {</p>
+        <p>var empleado = new Object();</p>
+        <p>empleado.NumeroEmpleado = $('#numeroEmpleado').val();</p>
+        <p>empleado.NombreEmpleado = $('#nombreEmpleado').val();</p>
+        <p>empleado.Sueldo = $('#sueldoEmpleado').val();</p>
+        <p></p>
+        <p>$.ajax({</p>
+        <p>url: uri,</p>
+        <p>type: 'POST',</p>
+        <p>dataType: 'json',</p>
+        <p>data: empleado,</p>
+        <p>success: function (data, textStatus, xhr) {</p>
+        <p>$('#EmpleadoModal').modal('hide');</p>
+        <p>ObtenerEmpleados();</p>
+        <p>},</p>
+        <p>error: function (xhr, textStatus, errorThrown) {</p>
+        <p>console.log('Error al guardar');</p>
+        <p>}</p>
+        <p>});</p>
+        <p>}</p>
+           
+</code></pre>
 
-        <h3>Implementación de la Clase</h3>
-        <div class="code-block">
-            <p>public class CuentaBancaria</p>
-            <p>{</p>
-            <p>    double saldo;</p>
-            <p>    string titular;</p>
-            <p>    string clave;</p>
-            <p>    string banco;</p>
-            <p>    </p>
-            <p>    public CuentaBancaria(string titular, double saldo)</p>
-            <p>    {</p>
-            <p>        this.titular = titular;</p>
-            <p>        this.saldo = saldo;</p>
-            <p>    }</p>
-            <p>    </p>
-            <p>    public void Depositar(double cantidad)</p>
-            <p>    {</p>
-            <p>        saldo += cantidad;</p>
-            <p>    }</p>
-            <p>    </p>
-            <p>    public bool Retirar(double cantidad)</p>
-            <p>    {</p>
-            <p>        if (cantidad <= saldo)</p>
-            <p>        {</p>
-            <p>            saldo -= cantidad;</p>
-            <p>            return true;</p>
-            <p>        }</p>
-            <p>        return false;</p>
-            <p>    }</p>
-            <p>}</p>
-        </div>
+      <p>Formulario para agregar empleado:</p>
+      <pre><code class="language-html">
+        <p>&lt;div class="modal-body"&gt;</p>
+        <p>&lt;div class="row"&gt;</p>
+        <p>&lt;div class="col-12"&gt;</p>
+        <p>&lt;b&gt;Número de empleado&lt;/b&gt;</p>
+        <p>
+          &lt;input id="numeroEmpleado" type="text" class="form-control" /&gt;
+        </p>
+        <p>&lt;/div&gt;</p>
+        <p>&lt;div class="col-12"&gt;</p>
+        <p>&lt;b&gt;Nombre de empleado&lt;/b&gt;</p>
+        <p>
+          &lt;input id="nombreEmpleado" type="text" class="form-control" /&gt;
+        </p>
+        <p>&lt;/div&gt;</p>
+        <p>&lt;div class="col-12"&gt;</p>
+        <p>&lt;b&gt;Sueldo de empleado&lt;/b&gt;</p>
+        <p>
+          &lt;input id="sueldoEmpleado" type="number" class="form-control" /&gt;
+        </p>
+        <p>&lt;/div&gt;</p>
+        <p>&lt;/div&gt;</p>
+        <p>&lt;/div&gt;</p>
+          
+</code></pre>
 
-        <h3>Acceso a propiedades</h3>
-        <div class="code-block">
-            <p>public class Cuenta</p>
-            <p>{</p>
-            <p>    string clave;        // Acceso limitado</p>
-            <p>    string banco;        // Acceso limitado</p>
-            <p>    </p>
-            <p>    public double Saldo { get; set; }   // Acceso público</p>
-            <p>    public string Titular { get; set; } // Acceso público</p>
-            <p>}</p>
-        </div>
+      <h2>4.1 CRUD - UPDATE</h2>
+      <p>Método PUT para actualizar empleados existentes.</p>
 
-        <h3>Modelo utilizando Entity Framework</h3>
-        <p>Entity Framework proporciona una capa de abstracción para trabajar con bases de datos, incluyendo:</p>
-        <ul>
-            <li>Entity Objects</li>
-            <li>Context, Model</li>
-            <li>EDM Model</li>
-            <li>Constructor</li>
-            <li>ADO.NET (Connection, Command, DataReader)</li>
-            <li>SqlClient Data Provider</li>
-            <li>Entity Client Data Provider</li>
-        </ul>
+      <h2>4.1 CRUD - DELETE</h2>
+      <p>Método DELETE para eliminar empleados.</p>
 
-        <h2>2.2 Modelo – Conexión a la BD</h2>
-        <p>Pasos para conectar a la base de datos:</p>
-        <ol>
-            <li>Crear una nueva base de datos en SQL Server</li>
-            <li>Crear un usuario para conectarse a la base de datos</li>
-            <li>Configurar la cadena de conexión en Web.config</li>
-            <li>Agregar el Entity Data Model al proyecto</li>
-            <li>Seleccionar "EF Designer desde base de datos"</li>
-            <li>Configurar la conexión y seleccionar las tablas a incluir</li>
-        </ol>
-
-        <div class="code-block">
-            <p>&lt;configuration&gt;</p>
-            <p>    &lt;connectionStrings&gt;</p>
-            <p>        &lt;add name="myConnectionString" connectionString="server=localhost;database=myDb;uid=myUser;password=myPass;" /&gt;</p>
-            <p>    &lt;/connectionStrings&gt;</p>
-        </div>
-
-        <h1 id="controladores">3. Controladores</h1>
-        <p>Los controladores manejan las solicitudes de los clientes y devuelven respuestas. En el patrón MVC (Modelo-Vista-Controlador), el controlador actúa como intermediario entre el modelo y la vista.</p>
-
-        <div class="code-block">
-            <p>namespace DemoTaller.Controllers</p>
-            <p>{</p>
-            <p>    public class EmpleadoController : ApiController</p>
-            <p>    {</p>
-            <p>        // Código del controlador</p>
-            <p>    }</p>
-            <p>}</p>
-        </div>
-
-        <h3>HTTP</h3>
-        <p>Es un protocolo sin estado que permite realizar operaciones CRUD (Create, Read, Update, Delete) mediante verbos HTTP:</p>
-        <ul>
-            <li>GET: Recuperar datos</li>
-            <li>POST: Crear nuevos recursos</li>
-            <li>PUT: Actualizar recursos existentes</li>
-            <li>DELETE: Eliminar recursos</li>
-        </ul>
-
-        <h1 id="crud">4. CRUD</h1>
-        <p>Operaciones CRUD en Web API 2.0:</p>
-        <ul>
-            <li><span class="highlight">GET()</span> – Devuelve todos los empleados</li>
-            <li><span class="highlight">GET(id)</span> – Devuelve un cliente por su número de empleado</li>
-            <li><span class="highlight">POST</span> – Agrega un nuevo empleado</li>
-            <li><span class="highlight">PUT</span> – Actualiza los datos de un empleado</li>
-            <li><span class="highlight">DELETE</span> – Elimina un registro de un empleado</li>
-        </ul>
-
-        <h2>4.1 CRUD - Controlador</h2>
-        <p>Constructor del controlador:</p>
-        <div class="code-block">
-            <p>namespace DemoTaller.Controllers</p>
-            <p>{</p>
-            <p>    public class EmpleadoController : ApiController</p>
-            <p>    {</p>
-            <p>        public Models.DemoEntities contexto;</p>
-            <p>        </p>
-            <p>        public EmpleadoController()</p>
-            <p>        {</p>
-            <p>            contexto = new Models.DemoEntities();</p>
-            <p>        }</p>
-            <p>    }</p>
-            <p>}</p>
-        </div>
-
-        <h2>4.1 CRUD - READ</h2>
-        <p>Método GET para obtener todos los empleados:</p>
-        <div class="code-block">
-            <p>// Cliente HTML con jQuery</p>
-            <p>&lt;script&gt;</p>
-            <p>    var uri = "api/empleado";</p>
-            <p>    </p>
-            <p>    $(function () {</p>
-            <p>        ObtenerEmpleados();</p>
-            <p>    });</p>
-            <p>    </p>
-            <p>    function ObtenerEmpleados() {</p>
-            <p>        $.getJSON(uri).done(function (data) {</p>
-            <p>            console.log("éxito");</p>
-            <p>            $('#empleados').empty(); // Limpiar el cuerpo de la tabla</p>
-            <p>            </p>
-            <p>            // Crea un ciclo que recorre todos los clientes de data</p>
-            <p>            $.each(data, function (key, val) {</p>
-            <p>                // Agrega una nueva fila con los datos</p>
-            <p>                var row = '&lt;td&gt;' + val.NumeroEmpleado +</p>
-            <p>                    '&lt;/td&gt;&lt;td&gt;' + val.NombreEmpleado + '&lt;/td&gt;' +</p>
-            <p>                    '&lt;/td&gt;&lt;td&gt;' + val.Sueldo + '&lt;/td&gt;';</p>
-            <p>                </p>
-            <p>                //Append a el body con el id empleados</p>
-            <p>                $('&lt;tr/&gt;', { html: row }).appendTo($('#empleados'));</p>
-            <p>            });</p>
-            <p>        });</p>
-            <p>    }</p>
-            <p>&lt;/script&gt;</p>
-        </div>
-
-        <p>Estructura HTML de la tabla:</p>
-        <div class="code-block">
-            <p>&lt;table class="table"&gt;</p>
-            <p>    &lt;thead&gt;</p>
-            <p>        &lt;tr&gt;</p>
-            <p>            &lt;td&gt;Número de empleado&lt;/td&gt;</p>
-            <p>            &lt;td&gt;Nombre Completo&lt;/td&gt;</p>
-            <p>            &lt;td&gt;Sueldo&lt;/td&gt;</p>
-            <p>        &lt;/tr&gt;</p>
-            <p>    &lt;/thead&gt;</p>
-            <p>    &lt;tbody id="empleados"&gt;&lt;/tbody&gt;</p>
-            <p>&lt;/table&gt;</p>
-        </div>
-
-        <h2>4.1 CRUD - CREATE</h2>
-        <p>Método POST para agregar un nuevo empleado:</p>
-        <div class="code-block">
-            <p>// Controlador en C#</p>
-            <p>public void Post(Models.Empleado empleado)</p>
-            <p>{</p>
-            <p>    contexto.Empleado.Add(empleado);</p>
-            <p>    contexto.SaveChanges();</p>
-            <p>}</p>
-            <p></p>
-            <p>// Cliente JavaScript</p>
-            <p>function GuardarEmpleado() {</p>
-            <p>    var empleado = new Object();</p>
-            <p>    empleado.NumeroEmpleado = $('#numeroEmpleado').val();</p>
-            <p>    empleado.NombreEmpleado = $('#nombreEmpleado').val();</p>
-            <p>    empleado.Sueldo = $('#sueldoEmpleado').val();</p>
-            <p>    </p>
-            <p>    $.ajax({</p>
-            <p>        url: uri,</p>
-            <p>        type: 'POST',</p>
-            <p>        dataType: 'json',</p>
-            <p>        data: empleado,</p>
-            <p>        success: function (data, textStatus, xhr) {</p>
-            <p>            $('#EmpleadoModal').modal('hide');</p>
-            <p>            ObtenerEmpleados();</p>
-            <p>        },</p>
-            <p>        error: function (xhr, textStatus, errorThrown) {</p>
-            <p>            console.log('Error al guardar');</p>
-            <p>        }</p>
-            <p>    });</p>
-            <p>}</p>
-        </div>
-
-        <p>Formulario para agregar empleado:</p>
-        <div class="code-block">
-            <p>&lt;div class="modal-body"&gt;</p>
-            <p>    &lt;div class="row"&gt;</p>
-            <p>        &lt;div class="col-12"&gt;</p>
-            <p>            &lt;b&gt;Número de empleado&lt;/b&gt;</p>
-            <p>            &lt;input id="numeroEmpleado" type="text" class="form-control" /&gt;</p>
-            <p>        &lt;/div&gt;</p>
-            <p>        &lt;div class="col-12"&gt;</p>
-            <p>            &lt;b&gt;Nombre de empleado&lt;/b&gt;</p>
-            <p>            &lt;input id="nombreEmpleado" type="text" class="form-control" /&gt;</p>
-            <p>        &lt;/div&gt;</p>
-            <p>        &lt;div class="col-12"&gt;</p>
-            <p>            &lt;b&gt;Sueldo de empleado&lt;/b&gt;</p>
-            <p>            &lt;input id="sueldoEmpleado" type="number" class="form-control" /&gt;</p>
-            <p>        &lt;/div&gt;</p>
-            <p>    &lt;/div&gt;</p>
-            <p>&lt;/div&gt;</p>
-        </div>
-
-        <h2>4.1 CRUD - UPDATE</h2>
-        <p>Método PUT para actualizar empleados existentes.</p>
-
-        <h2>4.1 CRUD - DELETE</h2>
-        <p>Método DELETE para eliminar empleados.</p>
-
-        <footer>
-            <p>© Universidad Autónoma de Tamaulipas - Facultad de Comercio y Administración Victoria</p>
-            <p>Dr. Juan Carlos de la Cruz Maldonado</p>
-        </footer>
+      <footer>
+        <p>
+          © Universidad Autónoma de Tamaulipas - Facultad de Comercio y
+          Administración Victoria
+        </p>
+        <p>Dr. Juan Carlos de la Cruz Maldonado</p>
+      </footer>
     </div>
-</body>
+  </body>
 </html>
